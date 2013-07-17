@@ -1,6 +1,7 @@
 select market,count(*) as bookings
   ,count(case when created_date> '2013-05-01' then 1 end) as bookings_to_new_listings
   ,count(case when created_date<= '2013-05-01' then 1 end) as bookings_to_old_listings
+  ,count(case when created_date> '2013-05-01' then 1 end)/count(*) as pct_bookings_to_new_listings
 from reservation2s r
 join hostings_summary h
 on h.hosting_id = r.hosting_id 
